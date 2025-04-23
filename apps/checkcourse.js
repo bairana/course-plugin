@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-export class CheckClass extends plugin {
+export class CheckCourse extends plugin {
   constructor () {
     super({
       name: '课程插件-查询课表',
@@ -9,13 +9,13 @@ export class CheckClass extends plugin {
       rule: [
         {
           reg: '#?查询(明天|明日|今日|今天)课表',
-          fnc: 'checkClass'
+          fnc: 'checkCourse'
         }
       ]
     })
   }
 
-  async checkClass (e) {
+  async checkCourse (e) {
     let DT = e.msg.replace(/#?查询/g, '').replace(/课表/g, '').trim()
     let Class = ''
     if (DT === '今天' || DT === '今日') {
@@ -23,7 +23,7 @@ export class CheckClass extends plugin {
     } else {
       Class = this.GetClass(e, 'tomorrow')
     }
-    e.reply(Class)
+    e.reply(DT + '的课表如下：\n' + Class)
   }
 
   GetClass (e, day) {
@@ -55,7 +55,7 @@ export class CheckClass extends plugin {
           const [S, E] = key.split('')
           const startTime = data.time[S]
           const endTime = this.addMinutesToTime(startTime, E * 60 - 10)
-          reply += `课程：${course.class}\n地点：${course.place}\n时间：${startTime} - ${endTime}\n\n`
+          reply += `课程：${course.class}\n地点：${course.place}\n时间：${startTime}-${endTime}\n\n`
         }
         return reply.trim()
       }
