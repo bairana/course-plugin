@@ -38,6 +38,7 @@ export class AddCourse extends plugin {
     const path = `./plugins/Course-Plugin/data/${userid}.json`
 
     if (!fs.existsSync(path)) {
+      fs.mkdirSync('./plugins/Course-Plugin/data')
       fs.writeFileSync(path, JSON.stringify({
         time: {
           1: '8:00',
