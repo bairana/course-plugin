@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
 import path from 'node:path'
-let AppName = 'course-plugin'
+let AppName = 'Course-Plugin'
 const moduleCache = new Map()
 let loadedFilesCount = 0
 let loadedFilesCounterr = 0
